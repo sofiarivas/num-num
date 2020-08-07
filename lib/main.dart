@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'num num app',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
         fontFamily: 'Merriweather',
         brightness: Brightness.dark,
         primaryColor: Colors.red,
@@ -59,10 +60,29 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Todays',
+                style: TextStyle(fontFamily: 'Roboto Condensed')),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text('Search',
+                style: TextStyle(fontFamily: 'Roboto Condensed')),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.perm_identity),
+            title: Text('Profile',
+                style: TextStyle(fontFamily: 'Roboto Condensed')),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            hero_section(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -79,8 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           /*...*/
                         },
                         child: Text(
-                          "See all",
-                          style: Theme.of(context).textTheme.button,
+                          "See all >",
+                          style: Theme.of(context)
+                              .textTheme
+                              .button
+                              .copyWith(color: Theme.of(context).accentColor),
                         ),
                       ),
                     ],
@@ -101,6 +124,40 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class hero_section extends StatelessWidget {
+  const hero_section({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 320.0,
+      padding: EdgeInsets.only(bottom: 30, left: 20),
+      alignment: Alignment.bottomLeft,
+      decoration: BoxDecoration(
+        color: Colors.redAccent,
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+              'https://images.pexels.com/photos/1109197/pexels-photo-1109197.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
+        ),
+      ),
+      child: Container(
+        width: 250,
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.0),
+          color: Colors.black87,
+        ),
+        child: Text('It is time to revive fruit salad.',
+            style: Theme.of(context).textTheme.headline5),
       ),
     );
   }
@@ -127,13 +184,14 @@ class recipe_card extends StatelessWidget {
               Container(
                 height: 180,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
                         'https://images.pexels.com/photos/1487511/pexels-photo-1487511.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'),
                   ),
                 ),
+                child: Row(),
               ),
               SizedBox(
                 height: 12.0,
@@ -160,10 +218,22 @@ class recipe_card extends StatelessWidget {
                                 'https://images.pexels.com/photos/1487511/pexels-photo-1487511.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'),
                           ),
                           SizedBox(
-                            width: 5.0,
+                            width: 10.0,
                           ),
-                          Text('Some cool chef',
-                              style: Theme.of(context).textTheme.caption)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Massimo Boturra',
+                                  style: Theme.of(context).textTheme.caption),
+                              Text('Osteria Francescana',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      .copyWith(
+                                          color: Theme.of(context).accentColor,
+                                          fontSize: 9.0))
+                            ],
+                          ),
                         ],
                       ),
                     ),

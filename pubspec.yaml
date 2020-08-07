@@ -66,3 +66,6 @@ flutter:
         - asset: fonts/Merriweather-Regular.ttf
         - asset: fonts/Merriweather-Italic.ttf
         - asset: fonts/Merriweather-Bold.ttf
+    - family: Roboto Condensed
+      fonts:
+        - asset: fonts/RobotoCondensed-Regular.ttf
