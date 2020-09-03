@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:num_num/recipe.dart';
 import 'package:num_num/components/recipe_card.dart';
 import 'package:num_num/components/hero_section.dart';
+import 'package:num_num/view/recipes_list.dart';
 
 class TodaysRecipes extends StatefulWidget {
   TodaysRecipes({Key key, this.title}) : super(key: key);
@@ -12,11 +12,6 @@ class TodaysRecipes extends StatefulWidget {
 }
 
 class _TodaysRecipesState extends State<TodaysRecipes> {
-  final List<Recipe> recipes = [
-    Recipe('Do homework'),
-    Recipe('Laundry'),
-    Recipe('Finish this tutorial')
-  ];
   @override
   Widget build(BuildContext context) {
     return ListView(
